@@ -3,10 +3,12 @@ const expressHandlebars = require('express-handlebars');
 const http = require('http');
 const socketIo = require('socket.io');
 const { connectDB } = require('./dao');
+const mongoose = require('mongoose');  // Agregada línea de conexión a mongoose
 const ProductManager = require('./dao/ProductManager');
 const CartManager = require('./dao/CartManager');
 
-connectDB(); // Conectar a MongoDB Atlas
+// Conectar a MongoDB Atlas
+mongoose.connect('mongodb+srv://cliente-1:<password>@e-commerce.3hwzoj5.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 app.engine('handlebars', expressHandlebars());
@@ -21,7 +23,7 @@ app.use(express.json());
 const productRouter = require('./productRouter');
 app.use('/api/products', productRouter(productManager));
 
-const cartRouter = require('./CartRouter.js');
+const cartRouter = require('./CartRouter');
 app.use('/api/carts', cartRouter(cartManager));
 
 app.get('/', (req, res) => {
