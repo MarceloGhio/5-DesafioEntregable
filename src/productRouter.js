@@ -1,6 +1,6 @@
 // Importar los modelos de MongoDB
-const ProductModel = require('./dao/models/ProductModel');
-const CartModel = require('./dao/models/CartModel');
+const ProductModel = require('../dao/models/ProductModel');
+const CartModel = require('../dao/models/CartModel');
 const express = require('express');
 const productRouter = express.Router();
 
